@@ -36,6 +36,20 @@ void horizontalLine(string** arr, int rowVal, int colVal, int size) {
 
 void printZero(int count, int rows, int cols, int size) {
 
+	string** arrZero;
+	arrZero = new string*[rows];
+	for(int i = 0; i < rows; ++i) 
+		arrZero[i] = new string[cols];
+	initializeArr(arrZero, rows, cols);
+
+	horizontalLine(arrZero, 0, 1, size);
+	verticalLine(arrZero, 1, 0, size);
+	verticalLine(arrZero, 1, cols - 1, size);
+	verticalLine(arrZero, size + 2, 0, size);
+	verticalLine(arrZero, size + 2, cols - 1, size);
+	horizontalLine(arrZero, rows - 1, 1, size);
+	printArr(arrZero, rows, cols);
+	delete arrZero;
 }
 
 void printOne(int count, int rows, int cols, int size) {
