@@ -54,21 +54,14 @@ void printZero(int count, int rows, int cols, int size) {
 
 void printOne(int count, int rows, int cols, int size) {
 	
-	int counter = 0;
 	string** arrOne;
 	arrOne = new string*[rows];
 	for(int i = 0; i < rows; ++i)
 		arrOne[i] = new string[cols];
 	initializeArr(arrOne, rows, cols);
 	
-	for(int i = 1; i < rows - 1; i++) {
-		if(counter == count) {
-			counter = 0;
-			continue;
-		}
-		arrOne[i][cols - 1] = "|";
-		counter++;
-	}
+	verticalLine(arrOne, 1, cols - 1, size);
+	verticalLine(arrOne, size + 2, cols - 1, size);
 	printArr(arrOne, rows, cols);
 	delete arrOne;
 }
@@ -80,11 +73,12 @@ void printTwo(int count, int rows, int cols, int size) {
 	for(int i = 0; i < rows; ++i)
 		arrTwo[i] = new string[cols];
 	initializeArr(arrTwo, rows, cols);
-	horizontalLine(arrTwo, 0, 0, size);
-	verticalLine(arrTwo, 1, 2, size);
-	horizontalLine(arrTwo, 3, 0, size);
-	verticalLine(arrTwo, 4, 0, size);
-	horizontalLine(arrTwo, 6, 0, size);
+
+	horizontalLine(arrTwo, 0, 1, size);
+	verticalLine(arrTwo, 1, cols - 1, size);
+	horizontalLine(arrTwo, size + 1, 1, size);
+	verticalLine(arrTwo, size + 2, 0, size);
+	horizontalLine(arrTwo, rows - 1, 1, size);
 	printArr(arrTwo, rows, cols);
 	delete arrTwo;
 }
@@ -247,10 +241,10 @@ void printNum(string inputFile) {
 				
 			} else if(num == 9) {
 				printNine(size, rows, cols, size);
-			
 			}
 		// }
 	}
+	readFile.close();
 }
 
 int main(int argc, char* argv[]) {
