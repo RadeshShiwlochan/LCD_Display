@@ -143,14 +143,54 @@ void printSix(int count, int rows, int cols, int size) {
 
 void printSeven(int count, int rows, int cols, int size) {
 
+	string** arrSeven;
+	arrSeven = new string*[rows];
+	for(int i = 0; i < rows; ++i) 
+		arrSeven[i] = new string[cols];
+	initializeArr(arrSeven, rows, cols);
+
+	horizontalLine(arrSeven, 0, 1, size);
+	verticalLine(arrSeven, 1, cols - 1, size);
+	verticalLine(arrSeven, size + 2, cols - 1, size);
+	printArr(arrSeven, rows, cols);
+	delete arrSeven;
 }
 
 void printEight(int count, int rows, int cols, int size) {
 
+	string** arrEight;
+	arrEight = new string*[rows];
+	for(int i = 0; i < rows; ++i) 
+		arrEight[i] = new string[cols];
+	initializeArr(arrEight, rows, cols);
+
+	horizontalLine(arrEight, 0, 1, size);
+	verticalLine(arrEight, 1, 0, size);
+	verticalLine(arrEight, 1, cols - 1, size);
+	horizontalLine(arrEight, size + 1, 1, size);
+	verticalLine(arrEight, size + 2, 0, size);
+	verticalLine(arrEight, size + 2, cols - 1, size);
+	horizontalLine(arrEight, rows - 1, 1, size);
+	printArr(arrEight, rows, cols);
+	delete arrEight;
 }
 
 void printNine(int count, int rows, int cols, int size) {
 
+	string** arrNine;
+	arrNine = new string*[rows];
+	for(int i = 0; i < rows; ++i) 
+		arrNine[i] = new string[cols];
+	initializeArr(arrNine, rows, cols);
+
+	horizontalLine(arrNine, 0, 1, size);
+	verticalLine(arrNine, 1, 0, size);
+	verticalLine(arrNine, 1, cols - 1, size);
+	horizontalLine(arrNine, size + 1, 1, size);
+	verticalLine(arrNine, size + 2, cols - 1, size);
+	horizontalLine(arrNine, rows - 1, 1, size);
+	printArr(arrNine, rows, cols);
+	delete arrNine;
 }
 
 void printNum(string inputFile) {
