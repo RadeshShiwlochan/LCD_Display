@@ -91,10 +91,10 @@ void printThree(int count, int rows, int cols, int size) {
 		arrThree[i] = new string[cols];
 	initializeArr(arrThree, rows, cols);
 	horizontalLine(arrThree, 0, 0, size);
-	verticalLine(arrThree, 1, 2, size);
-	horizontalLine(arrThree, 3, 0, size);
-	verticalLine(arrThree, 4, 2, size);
-	horizontalLine(arrThree, 6, 0, size);
+	verticalLine(arrThree, 1, cols - 1, size);
+	horizontalLine(arrThree, size + 1, 0, size);
+	verticalLine(arrThree, size + 2, cols - 1, size);
+	horizontalLine(arrThree, rows - 1, 0, size);
 	printArr(arrThree, rows, cols);
 	delete arrThree;
 }
