@@ -2,7 +2,15 @@
 #include <fstream>
 using namespace std;
 
+/**
+	-figure out why its printing to new line
+	-check constraints
+	-close files
+	-delete arr
+*/
+
 void printArr(string** arr, int rows, int cols) {
+
 	for(int i = 0; i < rows; ++i) {
 		for(int j = 0; j < cols; ++j) {
 			cout << arr[i][j];
@@ -22,16 +30,14 @@ void initializeArr(string** arr, int rows, int cols) {
 
 void verticalLine(string** arr, int rowVal, int colVal, int size) {
 
-	for(int r = rowVal; r < rowVal + size; ++r) {
+	for(int r = rowVal; r < rowVal + size; ++r) 
 		arr[r][colVal] = "|";
-	}
 }
 
 void horizontalLine(string** arr, int rowVal, int colVal, int size) {
 
-	for(int c = colVal; c < colVal + size; ++c) {
+	for(int c = colVal; c < colVal + size; ++c) 
 		arr[rowVal][c] = "-";
-	}
 }
 
 void printZero(int count, int rows, int cols, int size) {
@@ -90,6 +96,7 @@ void printThree(int count, int rows, int cols, int size) {
 	for(int i = 0; i < rows; ++i) 
 		arrThree[i] = new string[cols];
 	initializeArr(arrThree, rows, cols);
+
 	horizontalLine(arrThree, 0, 0, size);
 	verticalLine(arrThree, 1, cols - 1, size);
 	horizontalLine(arrThree, size + 1, 0, size);
@@ -106,10 +113,11 @@ void printFour(int count, int rows, int cols, int size) {
 	for(int i = 0; i < rows; ++i) 
 		arrFour[i] = new string[cols];
 	initializeArr(arrFour, rows, cols);
-	verticalLine(arrFour, 0, 0, size);
-	horizontalLine(arrFour, size, 1, size);
-	verticalLine(arrFour, 0, size + 1, size);
-	verticalLine(arrFour, size + 1, size + 1, size);
+
+	verticalLine(arrFour, 1, 0, size);
+	horizontalLine(arrFour, size + 1, 1, size);
+	verticalLine(arrFour, 1, size + 1, size);
+	verticalLine(arrFour, size + 2, size + 1, size);
 	printArr(arrFour, rows, cols);
 	delete arrFour;
 }
@@ -202,47 +210,51 @@ void printNine(int count, int rows, int cols, int size) {
 }
 
 void printNum(string inputFile) {
+
 	ifstream readFile;
 	readFile.open(inputFile);
 	int size = 0;
+	int rows = 0;
+	int cols = 0;
 	int num = 0;
-	int lastDigit = 0;
+	int lenOfNum = 0;
+	int index = 0;
 	string numAsStr = "";
+	char digit = 'X';
 	while(readFile >> size >> num) {
-		int rows = (2 * size) + 3;
-		int cols = size + 2;
-		// while(index < lenOfNum) {
-			if(num == 0) {
+		if(size == 0)
+			return;
+		rows = (2 * size) + 3;
+		cols = size + 2;
+		string numStr = to_string(num);
+		lenOfNum = numStr.length();
+		index = 0;
+		while(index < lenOfNum) {
+			digit = numStr[index];
+			if(digit == '0') {
 				printZero(size, rows, cols, size);
 			}
-			else if(num == 1) {
+			else if(digit == '1') {
 				printOne(size, rows, cols, size);
-				
-			} else if(num == 2) {
+			} else if(digit == '2') {
 				printTwo(size, rows, cols, size);
-				
-			} else if(num == 3) {
+			} else if(digit == '3') {
 				printThree(size, rows, cols, size);
-				
-			} else if(num == 4) {
+			} else if(digit == '4') {
 				printFour(size, rows, cols, size);
-				
-			} else if(num == 5) {
+			} else if(digit == '5') {
 				printFive(size, rows, cols, size);
-				
-			} else if(num == 6) {
+			} else if(digit == '6') {
 				printSix(size, rows, cols, size);
-			
-			} else if(num == 7) {
+			} else if(digit == '7') {
 				printSeven(size, rows, cols, size);
-				
-			} else if(num == 8) {
+			} else if(digit == '8') {
 				printEight(size, rows, cols, size);
-				
-			} else if(num == 9) {
+			} else if(digit == '9') {
 				printNine(size, rows, cols, size);
 			}
-		// }
+			index++;
+		 }
 	}
 	readFile.close();
 }
